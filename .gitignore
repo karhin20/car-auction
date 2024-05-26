@@ -1,0 +1,7 @@
+node_modules
+/client/.gitignore
+/client/node_modules
+/backend/node_modules
+/backend/.gitignore
+/backend/env
+
