@@ -18,7 +18,7 @@ const BookingModel = require('./schema/bookingModel.js');
 
 app.use(cors(
   {
-    origin: ["front-end-auction" , "localhost:3000"],
+    origin: ["https://car-auction-gh.vercel.app"],
     methods: ["POST" , "GET", "DELETE"],
     credentials: true
   }
