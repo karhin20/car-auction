@@ -23,6 +23,7 @@ import AdminHome from './pages/admin/AdminHome';
 import EditCar from './pages/admin/EditCar';
 import UnauthorizedPage from './pages/admin/UnauthorizedPage'
 import RoleBasedRoute from './components/RoleBasedRoute';
+import { Analytics } from "@vercel/analytics/react"
 
 InitializeApp();
 
@@ -30,6 +31,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <Router>
+      <Analytics/>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<RoleHome />} />
