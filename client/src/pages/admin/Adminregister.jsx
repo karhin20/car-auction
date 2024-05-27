@@ -22,7 +22,7 @@ function AdminRegister() {
     setUserDetails({ username, lastname, password, phone, role, adminCode }); 
 
     try {
-      const response = await axios.get(`/api/users/checkPhone/${phone}`, { headers: { 'Content-Type': 'application/json' } });
+      const response = await axios.get(`https://car-auction-dusky.vercel.app/api/users/checkPhone/${phone}`, { headers: { 'Content-Type': 'application/json' } });
 
       if (response.data.exists) {
         setPhoneExists(true);

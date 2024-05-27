@@ -5,7 +5,7 @@ export const getAllCars=()=>async dispatch=>{
     dispatch({type : 'LOADING', payload: true})
 
     try {
-        const response = await axios.get('/api/cars/getAllCars')
+        const response = await axios.get('https://car-auction-dusky.vercel.app/api/cars/getAllCars')
         dispatch({type: 'GET_ALL_CARS', payload:response.data})
         dispatch({type : 'LOADING', payload: false})
     } catch (error) {
@@ -20,7 +20,7 @@ export const addCar = (reqObj) => async (dispatch) => {
  
 
   try {
-    await axios.post('/api/cars/addcar', reqObj);
+    await axios.post('https://car-auction-dusky.vercel.app/api/cars/addcar', reqObj);
     dispatch({ type: 'LOADING', payload: false });
     message.success('New Car Added Successfully');
     
@@ -38,7 +38,7 @@ export const addCar = (reqObj) => async (dispatch) => {
 export const editCar = (reqObj) => async (dispatch) => {
     dispatch({ type: 'LOADING', payload: true });
     try {
-        await axios.post('/api/cars/editcar', reqObj);
+        await axios.post('https://car-auction-dusky.vercel.app/api/cars/editcar', reqObj);
         dispatch({ type: 'LOADING', payload: false });
         message.success('Car Details Updated Successfully');
 
@@ -57,7 +57,7 @@ export const editCar = (reqObj) => async (dispatch) => {
 export const deleteCar = (carId) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.delete(`/api/cars/deletecar/${carId}`);
+    await axios.delete(`https://car-auction-dusky.vercel.app/api/cars/deletecar/${carId}`);
     dispatch({ type: 'LOADING', payload: false });
     message.success('Car and related bids deleted successfully');
     return Promise.resolve();  // Resolve the promise on success

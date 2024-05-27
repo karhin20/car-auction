@@ -217,7 +217,29 @@ app.post('/api/admin/register', async (req, res) => {
 });
 
 
-app.get('/api/users/getAllUsers', async (req, res) => {
+function authenticateAdmin(req, res, next) {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Unauthorized access' });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: 'Invalid token' });
+    }
+
+    if (user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
+    req.user = user;
+    next();
+  });
+}
+
+// Secure the /api/users/getAllUsers endpoint with JWT token authentication and admin role check
+app.get('/api/users/getAllUsers', authenticateAdmin, async (req, res) => {
   try {
     const users = await UserInfoModel.find();
     res.json(users);

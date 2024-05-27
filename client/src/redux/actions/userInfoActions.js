@@ -5,7 +5,7 @@ export const userLogin = (reqObj) => async dispatch => {
     dispatch({ type: 'LOADING', payload: true });
 
     try {
-        const response = await axios.post('/api/users/login', reqObj);
+        const response = await axios.post('https://car-auction-dusky.vercel.app/api/users/login', reqObj);
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response.data));
         dispatch({ type: 'LOGIN_SUCCESS', payload: response.data }); 
@@ -32,7 +32,7 @@ export const userRegister = (reqObj) => async dispatch => {
     dispatch({ type: 'LOADING', payload: true });
 
     try {
-        const response = await axios.post('/api/users/register', reqObj);
+        const response = await axios.post('https://car-auction-dusky.vercel.app/api/users/register', reqObj);
         message.success('Registration successful');
         setTimeout(() => {
             window.location.href = '/login';
@@ -52,7 +52,7 @@ export const adminRegister = (reqObj) => async dispatch => {
     dispatch({ type: 'LOADING', payload: true });
 
     try {
-        const response = await axios.post('/api/admin/register', reqObj);
+        const response = await axios.post('https://car-auction-dusky.vercel.app/api/admin/register', reqObj);
         message.success('Registration successful');
         setTimeout(() => {
             window.location.href = '/login';
@@ -72,7 +72,7 @@ export const getAllUsers = () => async dispatch => {
     dispatch({ type: 'LOADING', payload: true });
 
     try {
-        const response = await axios.get('/api/users/getAllUsers');
+        const response = await axios.get('https://car-auction-dusky.vercel.app/api/users/getAllUsers');
         dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     } catch (error) {
         console.log(error);

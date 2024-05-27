@@ -5,7 +5,7 @@ export const bookcar = (reqObj) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
 
   try {
-    await axios.post('/api/bookings/bookcar', reqObj); 
+    await axios.post('https://car-auction-dusky.vercel.app/api/bookings/bookcar', reqObj); 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Your bid was placed successfully');
   } catch (error) {
@@ -21,7 +21,7 @@ export const getAllBookings = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
 
   try {
-    const response = await axios.get('/api/bookings/getAllBookings'); 
+    const response = await axios.get('https://car-auction-dusky.vercel.app/api/bookings/getAllBookings'); 
     dispatch({ type: 'GET_ALL_BOOKINGS', payload: response.data }); 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Bids retrieved successfully');

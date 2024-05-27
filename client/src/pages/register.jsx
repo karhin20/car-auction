@@ -14,7 +14,7 @@ function AlertPage({ phone, onVerificationSuccess }) {
   const handleVerifyOTP = async () => {
     setIsSubmitting(true);
     try {
-      const response = await axios.post('/api/verify-otp', { phone, otp }, { headers: { 'Content-Type': 'application/json' } });
+      const response = await axios.post('https://car-auction-dusky.vercel.app/api/verify-otp', { phone, otp }, { headers: { 'Content-Type': 'application/json' } });
       if (response.data.code === '1100') {
         onVerificationSuccess();
         message.success('OTP verified successfully!');
@@ -83,13 +83,13 @@ function Register() {
     setLoading(true); // Show loader
 
     try {
-      const response = await axios.get(`/api/users/checkPhone/${phone}`, { headers: { 'Content-Type': 'application/json' } });
+      const response = await axios.get(`https://car-auction-dusky.vercel.app/api/users/checkPhone/${phone}`, { headers: { 'Content-Type': 'application/json' } });
       if (response.data.exists) {
         setPhoneExists(true);
         message.error('Phone number already exists. Please use a different phone number.');
         setLoading(false); // Hide loader
       } else {
-        const otpResponse = await axios.post('/api/generate-otp', { phone: phone }, { headers: { 'Content-Type': 'application/json' } });
+        const otpResponse = await axios.post('https://car-auction-dusky.vercel.app/api/generate-otp', { phone: phone }, { headers: { 'Content-Type': 'application/json' } });
 
         console.log(otpResponse.data); 
 
