@@ -18,7 +18,7 @@ const HomeCarousel= () => (
       <h6 style={contentStyle}>Register an account and start bidding</h6>
     </div>
     <div>
-      <h3 style={contentStyle}>3</h3>
+      <h3 style={contentStyle}>It is that simple to own a car</h3>
     </div>
 
   </Carousel>

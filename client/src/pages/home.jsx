@@ -49,7 +49,7 @@ function Home() {
             {cars.map((car, index) => (
               <Col key={index} lg={8} md={12} xs={24} className="" style={{ marginBottom: '40px' }}>
                 <div className="card bs1 bg-transparent d-flex flex-column h-100">
-                  <Carousel>
+                  <Carousel effect="fade">
                     {car.images.map((image, imgIndex) => (
                       <div key={imgIndex} onClick={() => handleImageClick(image.url)}>
                         <img src={image.url} className="card-img-top mt-3" alt={car.name} style={{ width: '100%', cursor: 'pointer' }} />
