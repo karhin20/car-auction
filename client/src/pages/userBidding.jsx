@@ -33,9 +33,8 @@ function UserBids() {
                             booking.car && (
                                 <Row gutter={6} className="bs1 m-2 text-left" key={booking._id} style={{paddingBottom: "20px"}}>
                                     <Col lg={9} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "20px" }}>
-                                        <div className="d-flex">
-                                            <i className="ri-car-fill"></i>
-                                            <h5><b>{booking.car.name}</b></h5>
+                                        <div>
+                                            <h5><i className="ri-car-fill"></i><b>{booking.car.name}</b></h5>
                                         </div>
                                         <p><i className="ri-car-line"></i> Model: <b>{booking.car.type}</b></p>
                                         <p><i className="ri-map-pin-line"></i> Location: <b>{booking.car.location}</b></p>

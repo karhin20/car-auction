@@ -78,7 +78,7 @@ const handleImages = (e) => {
         </div>
         <div className="form-group">
           <label htmlFor="endDate">Auction End Date</label>
-          <input type="text" className="form-control" id="location" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+          <input type="text" className="form-control" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
         </div>
         <div className="form-group">
           <p>Enterd Starting Price: ₵{numeral(startingPrice).format('0,0.00')}</p>
