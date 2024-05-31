@@ -68,17 +68,15 @@ export const adminRegister = (reqObj) => async dispatch => {
 
 
 
-import axios from "axios";
-import { message } from 'antd';
 
 export const getAllUsers = () => async dispatch => {
     dispatch({ type: 'LOADING', payload: true });
 
     try {
-        const token = localStorage.getItem('token'); // Retrieve the authentication token from localStorage
+        const token = localStorage.getItem('token');
         const response = await axios.get('https://car-auction-dusky.vercel.app/api/users/getAllUsers', {
             headers: {
-                Authorization: `Bearer ${token}` // Include the token in the Authorization header
+                Authorization: `Bearer ${token}` 
             }
         });
         dispatch({ type: 'GET_ALL_USERS', payload: response.data });
