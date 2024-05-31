@@ -104,6 +104,9 @@ function EditCar() {
               <Form.Item name='location' label="Car Location" rules={[{ required: true }]}>
                 <Input />
               </Form.Item>
+              <Form.Item name='endDate' label="Auction End Date" rules={[{ required: true }]}>
+                <Input />
+              </Form.Item>
               <div>Entered Starting Price:<b> ₵{numeral(startingPrice).format('0,00.00')}</b></div>
               <Form.Item name='startingPrice' label="Starting Price (as a number without commas)" rules={[{ required: true }]}>
                 <Input placeholder="example 500000" onChange={handleStartingPriceChange} />

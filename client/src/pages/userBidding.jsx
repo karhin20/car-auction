@@ -7,14 +7,13 @@ import { Row, Col } from "antd";
 import moment from "moment";
 import numeral from 'numeral';
 import CustomFooter from '../components/Footer';
+import { useParams } from 'react-router-dom';
 
 function UserBids() {
     const dispatch = useDispatch();
     const { bookings } = useSelector(state => state.biddingReducer);
-    const userData = JSON.parse(localStorage.getItem('user'));
-
-    const user = userData ? userData.user : null;
-    const userId = user ? user.id : null;
+    const { userid } = useParams();
+    const userId = userid;
 
     useEffect(() => {
         dispatch(getAllBookings());
