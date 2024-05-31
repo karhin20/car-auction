@@ -8,7 +8,7 @@ export const userLogin = (reqObj) => async dispatch => {
         const response = await axios.post('https://car-auction-dusky.vercel.app/api/users/login', reqObj);
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response.data));
-        localStorage.setItem('token', response.data.token); // Ensure token is stored
+        localStorage.setItem('token', response.data.token); 
         dispatch({ type: 'LOGIN_SUCCESS', payload: response.data }); 
         message.success('Login successful');
        
@@ -75,16 +75,22 @@ export const getAllUsers = () => async dispatch => {
 
     try {
         const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('No token found');
+        }
+
         const response = await axios.get('https://car-auction-dusky.vercel.app/api/users/getAllUsers', {
             headers: {
                 Authorization: `Bearer ${token}`
             },
-            withCredentials: true 
+            withCredentials: true
         });
+
         dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     } catch (error) {
-        console.log(error);
+        console.error('Error fetching users:', error);
         message.error('Failed to fetch users. Please try again.');
+        dispatch({ type: 'GET_ALL_USERS', payload: [] }); // Clear users on error
     } finally {
         dispatch({ type: 'LOADING', payload: false });
     }

@@ -135,7 +135,7 @@ app.delete("/api/cars/deletecar/:id", async (req, res) => {
       return res.status(404).json({ message: "Car not found" });
     }
 
-    // Access the publicId property correctly from the images array
+    
     const imgIds = car.images.map(image => image.public_id);
     
     // Delete images from cloudinary using the imgIds array
@@ -160,24 +160,25 @@ app.post('/api/users/login', async (req, res) => {
   const { phone, password } = req.body;
 
   try {
-      const user = await UserInfoModel.findOne({ phone });
-      if (!user) {
-          return res.status(400).json({ message: 'Invalid phone or password' });
-      }
+    const user = await UserInfoModel.findOne({ phone });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid phone or password' });
+    }
 
-      const isMatch = await user.matchPassword(password);
-      if (!isMatch) {
-          return res.status(400).json({ message: 'Invalid phone or password' });
-      }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid phone or password' });
+    }
 
-      const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-          expiresIn: '1h'
-      });
+    const secretKey = user.role === 'admin' ? process.env.JWT_SECRET_KEY_ADMIN : process.env.JWT_SECRET;
+    const token = jwt.sign({ id: user._id, role: user.role }, secretKey, {
+      expiresIn: '6h'
+    });
 
-      res.json({ token, user: { id: user._id, username: user.username, role: user.role } });
+    res.json({ token, user: { id: user._id, username: user.username, role: user.role } });
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Server error' });
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
@@ -196,7 +197,7 @@ app.post('/api/users/register', async (req, res) => {
   const { username, lastname, password, phone } = req.body;
 
   try {
-    const newuser = new UserInfoModel({ username, lastname, password, phone }); 
+    const newuser = new UserInfoModel({ username, lastname, password, phone}); 
     await newuser.save();
     res.send("Registration Successful");
   } catch (error) {
@@ -230,12 +231,10 @@ function authenticateAdmin(req, res, next) {
     return res.status(401).json({ message: 'Unauthorized access' });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.JWT_SECRET_KEY_ADMIN, (err, user) => {
     if (err) {
       return res.status(403).json({ message: 'Invalid token' });
     }
-
-    console.log('User:', user); // Add this line to log the user details
 
     if (user.role !== 'admin') {
       return res.status(403).json({ message: 'Access denied' });
