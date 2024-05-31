@@ -30,33 +30,35 @@ function UserBids() {
                         bookings.filter(booking => {
                             return booking.user === userId;
                         }).map(booking => (
-                            <Row gutter={6} className="bs1 m-2 text-left" key={booking._id}>
-                                <Col lg={8} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "20px" }}>
-                                    <div className="d-flex">
-                                        <i className="ri-car-fill"></i>
-                                        <p><b>{booking.car.name}</b></p>
-                                    </div>
-                                    <p><i className="ri-car-line"></i> Model: <b>{booking.car.type}</b></p>
-                                    <p><i className="ri-map-pin-line"></i> Location: <b>{booking.car.location}</b></p>
-                                    <p><i className="ri-phone-line"></i> Auctioneer's Phone: <b>{booking.car.adminPhone}</b></p>
-                                </Col>
-                                <Col lg={8} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "40px" }}>
-                                    <div>
-                                        <p><i className="ri-calendar-event-line"></i> Date of Bidding: <b>{moment(booking.createdAt).format('DD MMM yyyy')}</b></p>
-                                    </div>
-                                    <p><i className="ri-wallet-3-line"></i> Starting Price: <b> ₵{numeral(booking.car.startingPrice).format('0,0.00')}</b></p>
-                                    <p><i className="ri-wallet-3-line"></i> Bid Amount: <b><em>₵{numeral(booking.bidAmount).format('0,0.00')}</em></b></p>
-                                </Col>
-                                <Col lg={6} sm={24} className="custom-col">
-                                    <Carousel autoplay>
-                                        {booking.car.images.map((image, index) => (
-                                            <div key={index}>
-                                                <img style={{ borderRadius: 10, width: '100%' }} src={image.url} alt="Auction Cars" className="p-2" />
-                                            </div>
-                                        ))}
-                                    </Carousel>
-                                </Col>
-                            </Row>
+                            booking.car && (
+                                <Row gutter={6} className="bs1 m-2 text-left" key={booking._id}>
+                                    <Col lg={8} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "20px" }}>
+                                        <div className="d-flex">
+                                            <i className="ri-car-fill"></i>
+                                            <p><b>{booking.car.name}</b></p>
+                                        </div>
+                                        <p><i className="ri-car-line"></i> Model: <b>{booking.car.type}</b></p>
+                                        <p><i className="ri-map-pin-line"></i> Location: <b>{booking.car.location}</b></p>
+                                        <p><i className="ri-phone-line"></i> Auctioneer's Phone: <b>{booking.car.adminPhone}</b></p>
+                                    </Col>
+                                    <Col lg={8} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "40px" }}>
+                                        <div>
+                                            <p><i className="ri-calendar-event-line"></i> Date of Bidding: <b>{moment(booking.createdAt).format('DD MMM yyyy')}</b></p>
+                                        </div>
+                                        <p><i className="ri-wallet-3-line"></i> Starting Price: <b> ₵{numeral(booking.car.startingPrice).format('0,0.00')}</b></p>
+                                        <p><i className="ri-wallet-3-line"></i> Bid Amount: <b><em>₵{numeral(booking.bidAmount).format('0,0.00')}</em></b></p>
+                                    </Col>
+                                    <Col lg={6} sm={24} className="custom-col">
+                                        <Carousel autoplay>
+                                            {booking.car.images.map((image, index) => (
+                                                <div key={index}>
+                                                    <img style={{ borderRadius: 10, width: '100%' }} src={image.url} alt="Auction Cars" className="p-2" />
+                                                </div>
+                                            ))}
+                                        </Carousel>
+                                    </Col>
+                                </Row>
+                            )
                         ))
                     ) : (
                         <p>No bids found for you yet.</p>
