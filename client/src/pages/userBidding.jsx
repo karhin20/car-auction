@@ -14,6 +14,7 @@ function UserBids() {
     const { bookings } = useSelector(state => state.biddingReducer);
     const { userid } = useParams();
     const userId = userid;
+    console.log('userId')
 
     useEffect(() => {
         dispatch(getAllBookings());
