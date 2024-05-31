@@ -13,7 +13,7 @@ function UserBids() {
     const dispatch = useDispatch();
     const { bookings } = useSelector(state => state.biddingReducer);
     const { userid } = useParams();
-    const userId = userid;
+    const userId = userid
     console.log('userId')
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function UserBids() {
         <DefaultLayout>
             <h1 className="text-center mt-2">My Bids</h1>
 
-            <Row justify='center' gutter={16}>
+            <Row justify='center' gutter={16} style={{paddingBottom: "20px"}}>
                 <Col lg={16} sm={24}>
                     {bookings && bookings.length > 0 ? (
                         bookings.filter(booking => {
