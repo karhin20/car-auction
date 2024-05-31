@@ -36,7 +36,7 @@ function AddCars() {
         images: imagesBase64
       };
       dispatch(addCar(updatedValues));
-      message.success("Car added successfully");
+      message.success("Car is being added");
     } catch (error) {
       console.error('Error converting images:', error);
       message.error("Failed to convert images.");
