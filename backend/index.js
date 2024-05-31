@@ -35,6 +35,12 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://car-auction-gh.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 
 app.get('/api/cars/getAllCars', async (req, res) => {
   try {

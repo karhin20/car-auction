@@ -55,15 +55,15 @@ function BidDetails() {
             <div className="text-center">
                 {carDetail ? (
                     <div>
-                        <h1>Bid Details for {carDetail.name}</h1>
+                        <h3>Bid Details for {carDetail.name}</h3>
                         <img src={carDetail.images.length > 0 ? carDetail.images[0].url : ''} alt="Auctioned Cars in Ghana" style={{ width: '400px', height: 'auto' }} />
                     </div>
                 ) : (
-                    <h3>Loading car details...</h3>
+                    <h5>Loading car details...</h5>
                 )}
                 {carBids.length === 0 ? (
                     <div className="text-center">
-                        <h3>No bids available for this car.</h3>
+                        <h5>No bids available for this car.</h5>
                     </div>
                 ) : (
                     <Row justify="center">

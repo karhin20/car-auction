@@ -77,8 +77,9 @@ export const getAllUsers = () => async dispatch => {
         const token = localStorage.getItem('token');
         const response = await axios.get('https://car-auction-dusky.vercel.app/api/users/getAllUsers', {
             headers: {
-                Authorization: `Bearer ${token}` 
-            }
+                Authorization: `Bearer ${token}`
+            },
+            withCredentials: true 
         });
         dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     } catch (error) {
