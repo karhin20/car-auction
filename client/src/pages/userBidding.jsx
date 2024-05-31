@@ -24,14 +24,14 @@ function UserBids() {
         <DefaultLayout>
             <h1 className="text-center mt-2">My Bids</h1>
 
-            <Row justify='center' gutter={16} style={{paddingBottom: "20px"}}>
+            <Row justify='center' gutter={16} style={{paddingBottom: "30px"}}>
                 <Col lg={16} sm={24}>
                     {bookings && bookings.length > 0 ? (
                         bookings.filter(booking => {
                             return booking.user === userId;
                         }).map(booking => (
                             booking.car && (
-                                <Row gutter={6} className="bs1 m-2 text-left" key={booking._id}>
+                                <Row gutter={6} className="bs1 m-2 text-left" key={booking._id} style={{paddingBottom: "10px"}}>
                                     <Col lg={8} sm={24} className="custom-col" style={{ paddingLeft: "20px", paddingTop: "20px" }}>
                                         <div className="d-flex">
                                             <i className="ri-car-fill"></i>
