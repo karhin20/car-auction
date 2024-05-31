@@ -229,6 +229,8 @@ function authenticateAdmin(req, res, next) {
       return res.status(403).json({ message: 'Invalid token' });
     }
 
+    console.log('User:', user); // Add this line to log the user details
+
     if (user.role !== 'admin') {
       return res.status(403).json({ message: 'Access denied' });
     }
@@ -237,6 +239,7 @@ function authenticateAdmin(req, res, next) {
     next();
   });
 }
+
 
 // Secure the /api/users/getAllUsers endpoint with JWT token authentication and admin role check
 app.get('/api/users/getAllUsers', authenticateAdmin, async (req, res) => {
@@ -248,6 +251,7 @@ app.get('/api/users/getAllUsers', authenticateAdmin, async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 app.get('/api/users/checkPhone/:phone', async (req, res) => {
   const phone = req.params.phone;

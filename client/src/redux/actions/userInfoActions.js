@@ -8,6 +8,7 @@ export const userLogin = (reqObj) => async dispatch => {
         const response = await axios.post('https://car-auction-dusky.vercel.app/api/users/login', reqObj);
         console.log(response);
         localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('token', response.data.token); // Ensure token is stored
         dispatch({ type: 'LOGIN_SUCCESS', payload: response.data }); 
         message.success('Login successful');
        
