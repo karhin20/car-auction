@@ -72,6 +72,9 @@ function AddCars() {
             ]}>
               <Input placeholder="example 0550005555" />
             </Form.Item>
+            <Form.Item name='endDate' label="Auction End Date" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
             <Form.Item name='location' label="Car Location" rules={[{ required: true }]}>
               <Input />
             </Form.Item>
