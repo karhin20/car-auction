@@ -35,7 +35,7 @@ function AlertPage({ phone, onVerificationSuccess }) {
         <Col lg={8} className="d-flex align-items-center justify-content-center">
           <div>
             <h2>Enter OTP</h2>
-            <h3>Use "123456" as OTP</h3>
+            <h6>Use "123456" as OTP</h6>
             <Form>
               <Form.Item label="OTP">
                 <OTPInput
